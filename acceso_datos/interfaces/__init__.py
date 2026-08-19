@@ -1,0 +1,7 @@
+from .icategoria_repositorio import ICategoriaRepositorio
+from .idevolucion_repositorio import IDevolucionRepositorio
+from .iejemplar_repositorio import IEjemplarRepositorio
+from .ilibro_repositorio import ILibroRepositorio
+from .iprestamo_repositorio import IPrestamoRepositorio
+from .ireserva_repositorio import IReservaRepositorio
+from .iusuario_repositorio import IUsuarioRepositorio

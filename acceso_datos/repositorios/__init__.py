@@ -1,0 +1,7 @@
+from .categoria_repositorio import CategoriaRepositorio
+from .devolucion_repositorio import DevolucionRepositorio
+from .ejemplar_repositorio import EjemplarRepositorio
+from .libro_repositorio import LibroRepositorio
+from .prestamo_repositorio import PrestamoRepositorio
+from .reserva_repositorio import ReservaRepositorio
+from .usuario_repositorio import UsuarioRepositorio

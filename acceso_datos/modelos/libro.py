@@ -81,3 +81,17 @@ class Libro:
             raise ValueError("El ISBN debe tener 13 dígitos.")
 
         return isbn_limpio
+    
+    def __lt__(self, otro: 'Libro') -> bool:
+        """Método útil para enseñarle al ArbolAVL a comparar libros usando el operador '<' basado en el ISBN."""
+
+        if not isinstance(otro, Libro):
+            return NotImplemented
+        return self.isbn_libro < otro.isbn_libro
+
+    def __gt__(self, otro: 'Libro') -> bool:
+        """Método útil para enseñarle al ArbolAVL a comparar libros usando el operador '>' basado en el ISBN."""
+        
+        if not isinstance(otro, Libro):
+            return NotImplemented
+        return self.isbn_libro > otro.isbn_libro

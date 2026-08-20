@@ -1,7 +1,6 @@
 from typing import Optional
-from logica_negocio.interfaces.iautenticacion_service import IAutenticacionService
-from acceso_datos.interfaces.iusuario_repositorio import IUsuarioRepositorio
-from acceso_datos.modelos.usuarios import Usuario, Sesion
+from logica_negocio.interfaces import IAutenticacionService
+from acceso_datos import IUsuarioRepositorio, Usuario, Sesion
 from utilidades.seguridad import verificar_contrasenia
 
 

@@ -1,4 +1,4 @@
-mysql-connector-python>=9.0.0
+aiomysql>=0.2.0
 python-dotenv>=1.0.1
 bcrypt>=4.2.0
 async-tkinter-loop>=0.9.3

@@ -1,2 +1,9 @@
 .venv/
 .env
+build/
+dist/
+*.spec
+Thumbs.db
+desktop.ini
+__pycache__/
+*.py[cod]

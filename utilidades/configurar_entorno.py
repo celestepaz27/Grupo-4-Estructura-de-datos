@@ -1,7 +1,7 @@
 import os
 from urllib.request import urlopen
 
-URL_ENV = "https://gist.github.com/AndresMontanaro/e04a643a7080591d3f72db93c57cc302/raw/ae7c7dd3e1ee7104e4761e38023de50de98244d1/.env"
+URL_ENV = "https://gist.githubusercontent.com/AndresMontanaro/e04a643a7080591d3f72db93c57cc302/raw/1e9c1fd99bc8fc1ad4c883edf2379743e63c4e7d/.env"
 
 def descargar_env_si_no_existe() -> None:
 

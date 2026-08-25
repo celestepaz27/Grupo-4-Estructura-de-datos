@@ -51,9 +51,9 @@ Levanta tu entorno virtual aislado de Windows por medio de python -m venv .venv 
 
 Asegúrate de instalar las librerías encargadas de orquestar el asincronismo y la encriptación de datos: 
 
-bash
-
-pip install aiomysql bcrypt async-tkinter-loop
+```bash
+pip install -r requirements.txt
+```
 
 ### 4. Lanzar la aplicación principal
 

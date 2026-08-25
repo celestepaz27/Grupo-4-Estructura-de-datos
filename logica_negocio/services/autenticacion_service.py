@@ -20,13 +20,16 @@ class AutenticacionService(IAutenticacionService):
         tipo Sesion que representa a la autenticación.
         """
 
+        if not correo or not correo.strip() or not clave:
+            raise ValueError("Error de autenticación: Debe proporcionar correo y contraseña.")
+
         credenciales_validas = await self._validar_credenciales(correo, clave)
         
         if not credenciales_validas:
             raise ValueError("Error de autenticación: Correo o contraseña incorrectos.")
 
         usuario: Usuario = await self.__usuario_repositorio.consultar_por_correo(correo)
-        
+
         nueva_sesion = Sesion(usuario=usuario)
         nueva_sesion.iniciar_sesion() # Cambia el estado interno de la Sesion a Activo y se asigna la fecha de ingreso
 
@@ -43,23 +46,21 @@ class AutenticacionService(IAutenticacionService):
     def obtener_sesion_actual(self) -> Sesion:
         """Método que retorna la sesión activa actual"""
 
-        if not self.__sesion_actual:
+        if self.__sesion_actual is None or not self.__sesion_actual.esta_activa():
             raise ValueError("No hay ninguna sesión activa en este momento.")
         return self.__sesion_actual
 
     def obtener_usuario_autenticado(self) -> Usuario:
         """Método que retorna el objeto Usuario (Lector o Bibliotecario) que está usando el sistema."""
 
-        if not self.__sesion_actual:
-            raise ValueError("No hay ningún usuario autenticado.")
-        return self.__sesion_actual.usuario
+        return self.obtener_sesion_actual().usuario
 
     async def _validar_credenciales(self, correo: str, clave: str) -> bool:
         """Método interno protegido que verifica de manera segura las credenciales del usuario."""
 
         usuario: Optional[Usuario] = await self.__usuario_repositorio.consultar_por_correo(correo)
         
-        if not usuario:
+        if usuario is None:
             return False 
             
         return verificar_contrasenia(clave, usuario.clave)

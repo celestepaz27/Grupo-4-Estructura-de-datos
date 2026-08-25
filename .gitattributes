@@ -1,0 +1,15 @@
+# Configuración global para normalizar los fines de línea automáticamente
+* text=auto
+
+# Asegurar que todos los archivos de Python mantengan consistencia de sintaxis
+*.py text eol=lf
+
+# Marcar archivos de documentación y configuración como texto
+*.md text
+*.env text
+.gitignore text
+.gitattributes text
+
+# Bloquear archivos de base de datos locales si se generaran accidentalmente
+*.db binary
+*.sqlite binary

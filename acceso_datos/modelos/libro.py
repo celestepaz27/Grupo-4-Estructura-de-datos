@@ -87,11 +87,11 @@ class Libro:
 
         if not isinstance(otro, Libro):
             return NotImplemented
-        return self.isbn_libro < otro.isbn_libro
+        return self.isbn < otro.isbn
 
     def __gt__(self, otro: 'Libro') -> bool:
         """Método útil para enseñarle al ArbolAVL a comparar libros usando el operador '>' basado en el ISBN."""
         
         if not isinstance(otro, Libro):
             return NotImplemented
-        return self.isbn_libro > otro.isbn_libro
+        return self.isbn > otro.isbn

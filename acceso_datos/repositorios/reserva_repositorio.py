@@ -198,7 +198,7 @@ class ReservaRepositorio(Repositorio, IReservaRepositorio):
         """
 
         filtros = {"id_reserva": id}
-        datos = {"estado": estado}
+        datos = {"estado": estado.value}
         
         return await self._database.actualizar(self.__TABLA, filtros, datos)
 

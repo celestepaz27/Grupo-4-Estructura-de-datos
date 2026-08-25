@@ -71,8 +71,9 @@ class MySQLDatabase(Database):
             try:
                 # Inicialización robusta del Pool con control de contingencias de red
                 # Por la propiedad minsize se permite como minimo 2 conexiones dormidas listas para usar
-                # Por la propiedad maxsize se permite como máximo 10 conexiones simultáneas
-                # Por connect_timeout, si hay una espera a una consulta en la red mayor a 5 segundos, se aborta la espera
+                # Por la propiedad maxsize se permite como máximo 25 conexiones simultáneas
+                # Por connect_timeout, si hay una espera a una consulta en la red mayor a 4 segundos, se aborta la espera
+                # Por pool_recycle se recicla conexiones inactivas en tiempo real de internet cada 10 segundos
                 self.__pool = await aiomysql.create_pool(
                     host=self._host,
                     port=self._puerto,
@@ -80,9 +81,10 @@ class MySQLDatabase(Database):
                     password=self._clave,
                     db=self._nombre_bd,
                     minsize=2,
-                    maxsize=5,  
+                    maxsize=25,  
                     autocommit=True,
-                    connect_timeout=5  
+                    pool_recycle=10,
+                    connect_timeout=4  
                 )
 
                 self._esta_conectado = True
@@ -95,7 +97,6 @@ class MySQLDatabase(Database):
         """Método protegido que destruye el pool y libera por completo los recursos al apagar el programa"""
         if self._esta_conectado and self.__pool:
             self.__pool.close()
-            await self.__pool.wait_closed()
             self._esta_conectado = False
             print("[AIOMYSQL] Pool de conexiones liberado de la memoria RAM limpiamente.")
 

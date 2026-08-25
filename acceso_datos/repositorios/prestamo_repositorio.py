@@ -335,7 +335,7 @@ class PrestamoRepositorio(Repositorio, IPrestamoRepositorio):
         """
 
         filtros = {"id_prestamo": id}
-        datos = {"estado": estado}
+        datos = {"estado": estado.value}
         
         return await self._database.actualizar(self.__TABLA, filtros, datos)
 

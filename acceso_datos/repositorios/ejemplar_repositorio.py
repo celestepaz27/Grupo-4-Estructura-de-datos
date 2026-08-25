@@ -89,10 +89,10 @@ class EjemplarRepositorio(Repositorio, IEjemplarRepositorio):
         """
         Método que actualiza el estado de un ejemplar especifíco por su ID.
         Retorna un número que no sea 0 si el registro se actualizo.
-        """
-
+        """ 
+      
         filtros = {"id_ejemplar": id}
-        datos = {"estado": estado}
+        datos = {"estado": estado.value}
         
         return await self._database.actualizar(self.__TABLA, filtros, datos)
 
